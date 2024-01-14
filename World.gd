@@ -2,13 +2,13 @@ extends Node2D
 
 enum Direction { SW, NW, NE, SE, NONE }
 
-const PLAYER_RENDER_OFFSET = Vector2(0, -36)
+const PLAYER_RENDER_OFFSET = Vector2(0, -28)
 
 var valid_cells: Array[Vector2i] = []
 var player_position: Vector2i = Vector2i.ZERO
 
 func _ready():
-	valid_cells = $TileMap.get_used_cells(0)
+	valid_cells = $Ground.get_used_cells(0)
 	player_position = Vector2i(0, 6)
 	$Player.position = player_position_to_coordinates()
 
@@ -43,7 +43,7 @@ func get_movement_deltas() -> Vector2i:
 	return Vector2.ZERO
 
 func player_position_to_coordinates() -> Vector2:
-	return $TileMap.map_to_local(player_position) + PLAYER_RENDER_OFFSET
+	return $Ground.map_to_local(player_position) + PLAYER_RENDER_OFFSET
 
 func is_valid_position(target_position: Vector2i) -> bool:
 	return valid_cells.has(target_position)
