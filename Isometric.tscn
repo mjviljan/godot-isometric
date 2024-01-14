@@ -23,6 +23,7 @@ texture = ExtResource("4_ea42y")
 texture_region_size = Vector2i(124, 200)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 69)
+0:0/0/z_index = 1
 
 [sub_resource type="TileSet" id="TileSet_km7nf"]
 tile_shape = 1
@@ -31,6 +32,7 @@ tile_size = Vector2i(124, 63)
 sources/0 = SubResource("TileSetAtlasSource_663dk")
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_qdue2")
 
 [node name="Ground" type="TileMap" parent="."]
@@ -53,10 +55,20 @@ z_index = 1
 y_sort_enabled = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(0, 30)
 polygon = PackedVector2Array(-39, 0, 0, 19, 39, 0, 0, -19)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
+z_index = 1
+y_sort_enabled = true
+texture = ExtResource("3_ks84p")
+
+[node name="GhostSprite" type="Sprite2D" parent="Player"]
+self_modulate = Color(1, 1, 1, 0.32549)
+z_index = 2
+y_sort_enabled = true
 texture = ExtResource("3_ks84p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
