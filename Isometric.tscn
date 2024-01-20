@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctd286tfblo6l"]
+[gd_scene load_steps=14 format=3 uid="uid://ctd286tfblo6l"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_qdue2"]
 [ext_resource type="Texture2D" uid="uid://b73jvhfpkegx6" path="res://Assets/grass.png" id="2_afi6l"]
+[ext_resource type="Texture2D" uid="uid://milca8whie4g" path="res://Assets/floor.png" id="2_htrdg"]
 [ext_resource type="Texture2D" uid="uid://c7vj12nv3apw6" path="res://Assets/player.png" id="3_ks84p"]
 [ext_resource type="Texture2D" uid="uid://dwoa44faof7ty" path="res://Assets/obstacle.png" id="4_ea42y"]
+[ext_resource type="Script" path="res://TriggerVisibility.gd" id="4_sqyt4"]
 [ext_resource type="Script" path="res://TriggerZIndex.gd" id="4_vs873"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jhqu0"]
@@ -17,6 +19,17 @@ tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(124, 63)
 sources/0 = SubResource("TileSetAtlasSource_jhqu0")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axbua"]
+texture = ExtResource("2_htrdg")
+texture_region_size = Vector2i(124, 63)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_e26k1"]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(124, 63)
+sources/0 = SubResource("TileSetAtlasSource_axbua")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_663dk"]
 resource_name = "Obstacle"
@@ -35,6 +48,7 @@ sources/0 = SubResource("TileSetAtlasSource_663dk")
 [node name="World" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
+texture_filter = 1
 script = ExtResource("1_qdue2")
 
 [node name="Ground" type="TileMap" parent="."]
@@ -44,13 +58,38 @@ format = 2
 layer_0/y_sort_enabled = true
 layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65539, 0, 0, 65540, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 65541, 0, 0, 65542, 0, 0, 65538, 0, 0, 65537, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 393216, 0, 0, 393217, 0, 0, 327681, 0, 0, 262145, 0, 0, 196609, 0, 0, 131073, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0, 327686, 0, 0, 393222, 0, 0, 393221, 0, 0, 393220, 0, 0, 393218, 0, 0, 327682, 0, 0, 327683, 0, 0, 393219, 0, 0, 327684, 0, 0, 327685, 0, 0, 262149, 0, 0, 196613, 0, 0, 131077, 0, 0, 327680, 0, 0, 393223, 0, 0, 327687, 0, 0, 327688, 0, 0, 393224, 0, 0, 393225, 0, 0, 327689, 0, 0, 393226, 0, 0, 327690, 0, 0, 196619, 0, 0, 262155, 0, 0, 327691, 0, 0, 393227, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 131083, 0, 0, 10, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 11, 0, 0, -262133, 0, 0, -65525, 0, 0, -131061, 0, 0, -196597, 0, 0, -65536, 0, 0, -327680, 0, 0, -262144, 0, 0, -196608, 0, 0, -131072, 0, 0, -65535, 0, 0, -131071, 0, 0, -196607, 0, 0, -262143, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -327672, 0, 0, -327671, 0, 0, -327670, 0, 0, -327669, 0, 0, -262137, 0, 0, -262138, 0, 0, -262139, 0, 0, -65531, 0, 0, -131067, 0, 0, -196603, 0, 0, -196602, 0, 0, -131066, 0, 0, -65530, 0, 0, -65526, 0, 0, -65534, 0, 0, -65532, 0, 0, -65533, 0, 0, -393216, 0, 0, -393215, 0, 0, -393214, 0, 0, -393213, 0, 0, -393212, 0, 0, -393211, 0, 0, -393210, 0, 0, -393209, 0, 0, -393208, 0, 0, -393207, 0, 0, -393206, 0, 0, -393205, 0, 0, -393204, 0, 0, 262151, 0, 0, 196615, 0, 0, 131079, 0, 0, -65529, 0, 0, -131065, 0, 0, -196601, 0, 0, 393228, 0, 0, 327692, 0, 0, 262156, 0, 0, 196620, 0, 0, 131084, 0, 0, 65548, 0, 0, 12, 0, 0, -65524, 0, 0, -131060, 0, 0, -196596, 0, 0, -262132, 0, 0, -327668, 0, 0, -65528, 0, 0, -65527, 0, 0)
 
+[node name="Floors" type="TileMap" parent="."]
+z_index = 1
+y_sort_enabled = true
+tile_set = SubResource("TileSet_e26k1")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(-131070, 0, 0, -196606, 0, 0, -262142, 0, 0, -131069, 0, 0, -196605, 0, 0, -262141, 0, 0, -131068, 0, 0, -196604, 0, 0, -262140, 0, 0)
+
 [node name="See-through obstacles" type="TileMap" parent="."]
 z_index = 2
 y_sort_enabled = true
 tile_set = SubResource("TileSet_km7nf")
 format = 2
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(131074, 0, 0, 196610, 0, 0, 262146, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, -196606, 0, 0, -131070, 0, 0, -196605, 0, 0, -131069, 0, 0, -196604, 0, 0, -131068, 0, 0, 131080, 0, 0, 196616, 0, 0, 262152, 0, 0, 131081, 0, 0, 196617, 0, 0, 262153, 0, 0, 262154, 0, 0, 196618, 0, 0, 131082, 0, 0, -262140, 0, 0, -262141, 0, 0, -262142, 0, 0)
+layer_0/tile_data = PackedInt32Array(131074, 0, 0, 196610, 0, 0, 262146, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, 131080, 0, 0, 196616, 0, 0, 262152, 0, 0, 131081, 0, 0, 196617, 0, 0, 262153, 0, 0, 262154, 0, 0, 196618, 0, 0, 131082, 0, 0)
+
+[node name="Toggled obstacle" type="TileMap" parent="."]
+z_index = 2
+y_sort_enabled = true
+tile_set = SubResource("TileSet_km7nf")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(-196606, 0, 0, -131070, 0, 0, -196605, 0, 0, -131069, 0, 0, -196604, 0, 0, -131068, 0, 0, -262140, 0, 0, -262141, 0, 0, -262142, 0, 0)
+
+[node name="TriggerVisibility" type="Area2D" parent="Toggled obstacle"]
+position = Vector2(-367, -197)
+collision_layer = 4
+script = ExtResource("4_sqyt4")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Toggled obstacle/TriggerVisibility"]
+position = Vector2(800, 0)
+polygon = PackedVector2Array(3, 20, -197, 116, -193, 215, 8, 114, 197, 213, 200, 112)
 
 [node name="View-blocking obstacle" type="TileMap" parent="."]
 z_index = 2
@@ -94,5 +133,7 @@ position = Vector2(306, -38)
 offset = Vector2(68, 230)
 zoom = Vector2(0.75, 0.75)
 
+[connection signal="body_entered" from="Toggled obstacle/TriggerVisibility" to="Toggled obstacle/TriggerVisibility" method="_on_body_entered"]
+[connection signal="body_exited" from="Toggled obstacle/TriggerVisibility" to="Toggled obstacle/TriggerVisibility" method="_on_body_exited"]
 [connection signal="body_entered" from="View-blocking obstacle/TriggerZIndex" to="View-blocking obstacle/TriggerZIndex" method="_on_body_entered"]
 [connection signal="body_exited" from="View-blocking obstacle/TriggerZIndex" to="View-blocking obstacle/TriggerZIndex" method="_on_body_exited"]

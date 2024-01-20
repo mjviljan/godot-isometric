@@ -5,12 +5,8 @@ extends Area2D
 # through another obstacle. In a real scenario all obstacles would use one of these approaches and
 # it could be handled with Z-indexes alone — i.e. this functionality is for demonstration only.
 
-var obstacle = null
-var original_z_index = 0
-
-func _ready():
-	obstacle = get_parent()
-	original_z_index = obstacle.z_index
+@onready var obstacle = get_parent()
+@onready var original_z_index = obstacle.z_index
 
 func _on_body_entered(body):
 	if (body == %Player):
