@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctd286tfblo6l"]
+[gd_scene load_steps=16 format=3 uid="uid://ctd286tfblo6l"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_qdue2"]
 [ext_resource type="Texture2D" uid="uid://b73jvhfpkegx6" path="res://Assets/grass.png" id="2_afi6l"]
 [ext_resource type="Texture2D" uid="uid://milca8whie4g" path="res://Assets/floor.png" id="2_htrdg"]
 [ext_resource type="Texture2D" uid="uid://c7vj12nv3apw6" path="res://Assets/player.png" id="3_ks84p"]
 [ext_resource type="Texture2D" uid="uid://dwoa44faof7ty" path="res://Assets/obstacle.png" id="4_ea42y"]
+[ext_resource type="Shader" path="res://TestShader.gdshader" id="4_obd60"]
 [ext_resource type="Script" path="res://TriggerVisibility.gd" id="4_sqyt4"]
 [ext_resource type="Script" path="res://TriggerZIndex.gd" id="4_vs873"]
 
@@ -45,6 +46,12 @@ tile_layout = 5
 tile_size = Vector2i(124, 63)
 sources/0 = SubResource("TileSetAtlasSource_663dk")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_62tq0"]
+shader = ExtResource("4_obd60")
+shader_parameter/holeCenter = Vector2(0, 0)
+shader_parameter/holeRadius = 100.0
+shader_parameter/penumbra = 30.0
+
 [node name="World" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
@@ -64,15 +71,24 @@ y_sort_enabled = true
 tile_set = SubResource("TileSet_e26k1")
 format = 2
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(-131070, 0, 0, -196606, 0, 0, -262142, 0, 0, -131069, 0, 0, -196605, 0, 0, -262141, 0, 0, -131068, 0, 0, -196604, 0, 0, -262140, 0, 0)
+layer_0/tile_data = PackedInt32Array(-131070, 0, 0, -196606, 0, 0, -262142, 0, 0, -131069, 0, 0, -196605, 0, 0, -262141, 0, 0, -131068, 0, 0, -196604, 0, 0, -262140, 0, 0, 262152, 0, 0, 196616, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 196618, 0, 0, 262154, 0, 0, 262153, 0, 0, 196617, 0, 0, 131074, 0, 0, 196610, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 196612, 0, 0, 196611, 0, 0, 131075, 0, 0, 131076, 0, 0, -131064, 0, 0, -196600, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -196598, 0, 0, -131062, 0, 0, -131063, 0, 0, -196599, 0, 0)
 
-[node name="See-through obstacles" type="TileMap" parent="."]
+[node name="Partly transparent obstacle" type="TileMap" parent="."]
 z_index = 2
 y_sort_enabled = true
 tile_set = SubResource("TileSet_km7nf")
 format = 2
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(131074, 0, 0, 196610, 0, 0, 262146, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, 131080, 0, 0, 196616, 0, 0, 262152, 0, 0, 131081, 0, 0, 196617, 0, 0, 262153, 0, 0, 262154, 0, 0, 196618, 0, 0, 131082, 0, 0)
+layer_0/tile_data = PackedInt32Array(131074, 0, 0, 196610, 0, 0, 262146, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0)
+
+[node name="Transparency shader obstacle" type="TileMap" parent="."]
+z_index = 2
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_62tq0")
+tile_set = SubResource("TileSet_km7nf")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(131080, 0, 0, 196616, 0, 0, 262152, 0, 0, 131081, 0, 0, 196617, 0, 0, 262153, 0, 0, 262154, 0, 0, 196618, 0, 0, 131082, 0, 0)
 
 [node name="Toggled obstacle" type="TileMap" parent="."]
 z_index = 2
