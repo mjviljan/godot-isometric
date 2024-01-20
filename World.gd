@@ -7,6 +7,8 @@ const PLAYER_RENDER_OFFSET = Vector2(0, -28)
 var valid_cells: Array[Vector2i] = []
 var player_position: Vector2i = Vector2i.ZERO
 
+@onready var shader_obstacle_material = $"Transparency shader obstacle".material as ShaderMaterial
+
 func _ready():
 	valid_cells = $Ground.get_used_cells(0)
 	player_position = Vector2i(0, 6)
@@ -56,3 +58,4 @@ func _process(_delta):
 			player_position += movement_deltas;
 			$Player.position = player_position_to_coordinates()
 			$Player.move_and_slide()
+			shader_obstacle_material.set_shader_parameter("holeCenter", $Player.position)
